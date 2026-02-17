@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careloop - Pharma & Home Checkup</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        header {
+            background: rgba(255,255,255,0.95);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logo img {
+            height: 80px;
+            width: auto;
+            border-radius: 10px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            color: #764ba2;
+        }
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1, h2 {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero-image {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300"><rect fill="%23667eea" width="800" height="300" rx="20"/><text x="400" y="150" font-size="28" fill="white" text-anchor="middle" font-weight="bold" dy=".3em">👨‍⚕️ Doctor & Nurse caring for Elderly Patient at Home 🏠</text><text x="400" y="200" font-size="18" fill="%23fff" text-anchor="middle" opacity="0.9">Compassionate doorstep healthcare service</text></svg>');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            margin: 2rem auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .service-card {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .service-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .doorstep-img { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect fill="%23667eea" width="300" height="200" rx="15"/><text x="150" y="80" font-size="18" fill="white" text-anchor="middle" font-weight="bold">🏠 Doctor at Home</text><text x="150" y="120" font-size="14" fill="%23fff" text-anchor="middle">Nurse checking vitals</text><circle cx="80" cy="60" r="25" fill="%23fff" opacity="0.8"/><circle cx="220" cy="60" r="25" fill="%23764ba2" opacity="0.8"/></svg>'); 
+        }
+        .doctor-img { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect fill="%23764ba2" width="300" height="200" rx="15"/><text x="150" y="80" font-size="18" fill="white" text-anchor="pharmacy" font-weight="bold">👨‍⚕️ Specialist Consultation</text><text x="150" y="120" font-size="14" fill="%23fff" text-anchor="middle">Video & In-person</text><rect x="50" y="130" width="60" height="40" rx="5" fill="%23fff" opacity="0.7"/><rect x="190" y="130" width="60" height="40" rx="5" fill="%23667eea" opacity="0.7"/></svg>'); 
+        }
+        .physio-img { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><rect fill="%23f39c12" width="300" height="200" rx="15"/><text x="150" y="80" font-size="18" fill="white" text-anchor="middle" font-weight="bold">💪 Physiotherapy</text><text x="150" y="120" font-size="14" fill="%23fff" text-anchor="middle">Recovery at home</text><circle cx="70" cy="140" r="30" fill="%23fff" opacity="0.8"/><path d="M150 130 Q 200 100 250 130" stroke="%23fff" stroke-width="8" fill="none" opacity="0.9"/></svg>'); 
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+        .close:hover {
+            color: #333;
+        }
+        form {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 2rem auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+        #response {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        .service-info {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo img {
+                height: 60px;
+            }
+            .hero-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <!-- Replace this src with your actual image file path -->
+                <img src="1000010715.jpg" alt="Careloop Logo - Pharma & Home Checkup" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMjAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjgwIiByeD0iMTUiIGZpbGw9IiM2NjdlZWEiLz4KPHRleHQgeD0iMTAwIiB5PSI0NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiPkNhcmVsb29wPC90ZXh0Pgo8dGV4dCB4PSIxMDAiIHk9IjY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiNGRkZGRkYiPlBoYXJtYSAmIEhvbWUgQ2hlY2t1cDwvdGV4dD4KPC9zdmY+'">
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#book">Book Appointment</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h1>Welcome to Careloop</h1>
+        <p>Your Pharma & Home Checkup partner for doorstep convenience.</p>
+        <div class="hero-image"></div>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service-card" onclick="openModal('doorstep')">
+                <div class="service-image doorstep-img"></div>
+                <h3>🚚 Doorstep Visit</h3>
+                <p>Expert care delivered at your home with certified doctors and nurses.</p>
+                <p class="service-info">✅ 24/7 availability | ✅ Within 2 hours | ✅ Medicine delivery</p>
+            </div>
+            
+            <div class="service-card" onclick="openModal('doctor')">
+                <div class="service-image doctor-img"></div>
+                <h3>👨‍⚕️ Doctor Visit</h3>
+                <p>Personalized consultations with specialist doctors anywhere you need.</p>
+                <p class="service-info">✅ Video + In-person | ✅ Prescription | ✅ Pharmacy support</p>
+            </div>
+            
+            <div class="service-card" onclick="openModal('physio')">
+                <div class="service-image physio-img"></div>
+                <h3>💪 Physiotherapy</h3>
+                <p>Professional recovery sessions tailored to your specific injury.</p>
+                <p class="service-info">✅ Home sessions | ✅ Custom plans | ✅ Progress tracking</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>📞 Phone: +91-9876543220 | ✉️ Email: info@careloop.com | 📱 Instagram: @_.careloop._</p>
+    </section>
+
+    <section id="book">
+        <h2>General Booking</h2>
+        <form id="patientForm">
+            <input type="text" id="name" placeholder="Patient Name" required>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="number" id="age" placeholder="Age" required>
+            <select id="gender" required>
+                <option value="">Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+            <textarea id="message" placeholder="Additional Details (Pharmacy/Medicine needs)"></textarea>
+            <button type="submit">Submit Appointment</button>
+        </form>
+        <div id="response"></div>
+    </section>
+
+    <!-- Doorstep Modal -->
+    <div id="doorstepModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('doorstep')">&times;</span>
+            <h2>🚚 Doorstep Doctor Visit + Pharmacy</h2>
+            <form id="doorstepForm">
+                <input type="text" id="d_name" placeholder="Patient Name" required>
+                <input type="tel" id="d_phone" placeholder="Phone Number" required>
+                <input type="text" id="d_address" placeholder="Complete Home Address" required>
+                <textarea id="d_illness" placeholder="Describe patient's illness/symptoms + Medicine needs" required></textarea>
+                <button type="submit">Book Doorstep Visit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Doctor Visit Modal -->
+    <div id="doctorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('doctor')">&times;</span>
+            <h2>👨‍⚕️ Doctor Appointment + Pharmacy</h2>
+            <form id="doctorForm">
+                <input type="text" id="doc_name" placeholder="Patient Name" required>
+                <input type="tel" id="doc_phone" placeholder="Phone Number" required>
+                <input type="datetime-local" id="doc_time" required>
+                <select id="doc_specialty" required>
+                    <option value="">Select Doctor Specialty</option>
+                    <option value="General Physician">General Physician</option>
+                    <option value="Dentist">Dentist</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Gynecologist">Gynecologist</option>
+                    <option value="Orthopedist">Orthopedist</option>
+                </select>
+                <textarea id="doc_concern" placeholder="Main health concern + Medicine requirements" required></textarea>
+                <button type="submit">Book Doctor Appointment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Physiotherapy Modal -->
+    <div id="physioModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('physio')">&times;</span>
+            <h2>💪 Physiotherapy Session</h2>
+            <form id="physioForm">
+                <input type="text" id="p_name" placeholder="Patient Name" required>
+                <input type="tel" id="p_phone" placeholder="Phone Number" required>
+                <input type="text" id="p_injury" placeholder="Injury Name (e.g., Knee Pain, Back Strain)" required>
+                <input type="text" id="p_location" placeholder="Injury Location (e.g., Right Knee, Lower Back)" required>
+                <textarea id="p_details" placeholder="How injury happened & current symptoms + Pain relief needs" required></textarea>
+                <button type="submit">Book Physio Session</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Careloop - Pharma & Home Checkup. All rights reserved. | Serving Chennai & surrounding areas.</p>
+    </footer>
+
+    <script>
+        function openModal(type) {
+            document.getElementById(type + 'Modal').style.display = 'block';
+        }
+        
+        function closeModal(type) {
+            document.getElementById(type + 'Modal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        document.getElementById('doorstepForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('d_name').value,
+                phone: document.getElementById('d_phone').value,
+                address: document.getElementById('d_address').value,
+                illness: document.getElementById('d_illness').value
+            };
+            alert(`✅ Doorstep visit + Pharmacy booked!
+Doctor will visit: ${data.address}
+For: ${data.illness}
+Call: ${data.phone}`);
+            this.reset();
+            closeModal('doorstep');
+        });
+
+        document.getElementById('doctorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('doc_name').value,
+                phone: document.getElementById('doc_phone').value,
+                specialty: document.getElementById('doc_specialty').value,
+                concern: document.getElementById('doc_concern').value
+            };
+            alert(`✅ Doctor appointment + Pharmacy confirmed!
+${data.specialty}
+Concern: ${data.concern}
+Contact: ${data.phone}`);
+            this.reset();
+            closeModal('doctor');
+        });
+
+        document.getElementById('physioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const data = {
+                name: document.getElementById('p_name').value,
+                phone: document.getElementById('p_phone').value,
+                injury: document.getElementById('p_injury').value,
+                location: document.getElementById('p_location').value,
+                details: document.getElementById('p_details').value
+            };
+            alert(`✅ Physio session booked!
+${data.injury} (${data.location})
+Details: ${data.details}
+Call: ${data.phone}`);
+            this.reset();
+            closeModal('physio');
+        });
+
+        document.getElementById('patientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value
+            };
+            document.getElementById('response').innerHTML = `
+                <p style="background: #d4edda; color: #155724; padding: 1rem; border-radius: 8px;">
+                    Thank you, ${formData.name}! Your appointment request received. We'll call on ${formData.phone} for Pharma & Home Checkup service.
+                </p>
+            `;
+            document.getElementById('response').style.display = 'block';
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
