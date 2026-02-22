@@ -6,168 +6,121 @@
 <title>Careloop - Pharma & Home Checkup</title>
 
 <style>
+/* SAME DESIGN - NO CHANGE */
 body {
-font-family: 'Arial', sans-serif;
+font-family: Arial, sans-serif;
 margin: 0;
 padding: 0;
-background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-color: #333;
-min-height: 100vh;
+background: linear-gradient(135deg,#667eea,#764ba2);
+color:#333;
+min-height:100vh;
 }
-
 header {
 background: rgba(255,255,255,0.95);
-padding: 1rem 2rem;
-box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-position: sticky;
-top: 0;
-z-index: 100;
+padding:1rem 2rem;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+position:sticky;
+top:0;
+z-index:100;
 }
-
-.logo {
-display: flex;
-align-items: center;
-gap: 1rem;
-}
-
-.logo img {
-height: 80px;
-width: auto;
-border-radius: 10px;
-}
-
 nav {
-display: flex;
-justify-content: space-between;
-align-items: center;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
-
 nav ul {
-list-style: none;
-display: flex;
-gap: 2rem;
-align-items: center;
-margin: 0;
-padding: 0;
+list-style:none;
+display:flex;
+gap:2rem;
+align-items:center;
+margin:0;
+padding:0;
 }
-
 nav a {
-text-decoration: none;
-color: #667eea;
-font-weight: bold;
-font-size: 1.1rem;
+text-decoration:none;
+color:#667eea;
+font-weight:bold;
 }
-
-nav a:hover {
-color: #764ba2;
+.language-select{
+padding:6px 10px;
+border-radius:6px;
+border:1px solid #ccc;
+background:white;
+font-weight:bold;
 }
-
-.language-select {
-padding: 6px 10px;
-border-radius: 6px;
-border: 1px solid #ccc;
-background: white;
-font-weight: bold;
-cursor: pointer;
+section{
+padding:4rem 2rem;
+max-width:1200px;
+margin:0 auto;
+text-align:center;
 }
-
-section {
-padding: 4rem 2rem;
-max-width: 1200px;
-margin: 0 auto;
-text-align: center;
+h1,h2{
+color:white;
+text-shadow:2px 2px 4px rgba(0,0,0,0.3);
 }
-
-h1, h2 {
-color: white;
-text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:2rem;
+margin-top:2rem;
 }
-
-.hero-image {
-width: 100%;
-max-width: 800px;
-height: 300px;
-background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300"><rect fill="%23667eea" width="800" height="300" rx="20"/><text x="400" y="150" font-size="28" fill="white" text-anchor="middle" font-weight="bold" dy=".3em">Careloop Healthcare</text></svg>');
-background-size: cover;
-background-position: center;
-border-radius: 20px;
-margin: 2rem auto;
-box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+.service-card{
+background:white;
+padding:2rem;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+cursor:pointer;
+transition:0.3s;
 }
-
-.services {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-gap: 2rem;
-margin-top: 2rem;
+.service-card:hover{
+transform:translateY(-10px);
 }
-
-.service-card {
-background: rgba(255,255,255,0.95);
-padding: 2rem;
-border-radius: 15px;
-box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-transition: all 0.3s;
-cursor: pointer;
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+z-index:1000;
 }
-
-.service-card:hover {
-transform: translateY(-10px);
+.modal-content{
+background:white;
+margin:5% auto;
+padding:2rem;
+border-radius:15px;
+max-width:600px;
+position:relative;
 }
-
-.modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.8);
-z-index: 1000;
+.close{
+position:absolute;
+right:1rem;
+top:1rem;
+font-size:24px;
+cursor:pointer;
 }
-
-.modal-content {
-background: white;
-margin: 5% auto;
-padding: 2rem;
-border-radius: 15px;
-max-width: 600px;
-position: relative;
+input,select,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ddd;
 }
-
-.close {
-position: absolute;
-right: 1.5rem;
-top: 1.5rem;
-font-size: 2rem;
-cursor: pointer;
+button{
+background:#667eea;
+color:white;
+padding:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+width:100%;
 }
-
-input, select, textarea {
-width: 100%;
-padding: 1rem;
-margin: 1rem 0;
-border: 1px solid #ddd;
-border-radius: 8px;
-box-sizing: border-box;
-}
-
-button {
-background: #667eea;
-color: white;
-padding: 1rem;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-width: 100%;
-}
-
-footer {
-background: rgba(0,0,0,0.8);
-color: white;
-padding: 2rem;
-text-align: center;
+footer{
+background:black;
+color:white;
+padding:2rem;
+text-align:center;
 }
 </style>
 </head>
@@ -176,10 +129,7 @@ text-align: center;
 
 <header>
 <nav>
-<div class="logo">
-<img src="1000010715.jpg" alt="Careloop Logo">
-</div>
-
+<div style="font-weight:bold;font-size:20px;">Careloop</div>
 <ul>
 <li><a href="#home" id="navHome"></a></li>
 <li><a href="#services" id="navServices"></a></li>
@@ -197,24 +147,23 @@ text-align: center;
 <section id="home">
 <h1 id="homeTitle"></h1>
 <p id="homeDesc"></p>
-<div class="hero-image"></div>
 </section>
 
 <section id="services">
 <h2 id="servicesTitle"></h2>
 <div class="services">
 
-<div class="service-card">
+<div class="service-card" onclick="openModal('doorstep')">
 <h3 id="doorTitle"></h3>
 <p id="doorDesc"></p>
 </div>
 
-<div class="service-card">
+<div class="service-card" onclick="openModal('doctor')">
 <h3 id="docTitle"></h3>
 <p id="docDesc"></p>
 </div>
 
-<div class="service-card">
+<div class="service-card" onclick="openModal('physio')">
 <h3 id="phyTitle"></h3>
 <p id="phyDesc"></p>
 </div>
@@ -231,58 +180,102 @@ text-align: center;
 </p>
 </section>
 
+<!-- DOORSTEP MODAL -->
+<div id="doorstepModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal('doorstep')">&times;</span>
+<h2>Doorstep Visit</h2>
+<input placeholder="Name">
+<input placeholder="Age">
+<input placeholder="Phone Number">
+<input placeholder="Address">
+<textarea placeholder="Reason for Visit"></textarea>
+<button>Submit</button>
+</div>
+</div>
+
+<!-- DOCTOR MODAL -->
+<div id="doctorModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal('doctor')">&times;</span>
+<h2>Doctor Consultation</h2>
+<input placeholder="Name">
+<input placeholder="Age">
+<input placeholder="Phone Number">
+<select>
+<option>Video Call</option>
+<option>In Person</option>
+</select>
+<textarea placeholder="Reason for Consultation"></textarea>
+<button>Submit</button>
+</div>
+</div>
+
+<!-- PHYSIO MODAL -->
+<div id="physioModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeModal('physio')">&times;</span>
+<h2>Physiotherapy</h2>
+<input placeholder="Name">
+<input placeholder="Phone Number">
+<input placeholder="Address">
+<textarea placeholder="Injury / Pain Details"></textarea>
+<button>Submit</button>
+</div>
+</div>
+
 <footer>
 <p id="footerText"></p>
 </footer>
 
 <script>
 
+function openModal(type){
+document.getElementById(type+"Modal").style.display="block";
+}
+function closeModal(type){
+document.getElementById(type+"Modal").style.display="none";
+}
+window.onclick=function(e){
+if(e.target.classList.contains("modal")){
+e.target.style.display="none";
+}
+}
+
+/* LANGUAGE */
 function changeLanguage(lang){
 
 if(lang==="en"){
-
-document.getElementById("navHome").innerText="Home";
-document.getElementById("navServices").innerText="Services";
-document.getElementById("navContact").innerText="Contact";
-
-document.getElementById("homeTitle").innerText="Welcome to Careloop";
-document.getElementById("homeDesc").innerText="Your Pharma & Home Checkup partner for doorstep convenience.";
-document.getElementById("servicesTitle").innerText="Our Services";
-
-document.getElementById("doorTitle").innerText="🚚 Doorstep Visit";
-document.getElementById("doorDesc").innerText="Doctor & nurse visit at your home.";
-
-document.getElementById("docTitle").innerText="👨‍⚕️ Doctor Consultation";
-document.getElementById("docDesc").innerText="Video or in-person specialist consultation.";
-
-document.getElementById("phyTitle").innerText="💪 Physiotherapy";
-document.getElementById("phyDesc").innerText="Professional recovery sessions at home.";
-
-document.getElementById("contactTitle").innerText="Contact Us";
-document.getElementById("footerText").innerText="© 2026 Careloop - Pharma & Home Checkup. All rights reserved.";
-
+navHome.innerText="Home";
+navServices.innerText="Services";
+navContact.innerText="Contact";
+homeTitle.innerText="Welcome to Careloop";
+homeDesc.innerText="Your Pharma & Home Checkup partner.";
+servicesTitle.innerText="Our Services";
+doorTitle.innerText="🚚 Doorstep Visit";
+doorDesc.innerText="Doctor at home service.";
+docTitle.innerText="👨‍⚕️ Doctor Consultation";
+docDesc.innerText="Video or in-person visit.";
+phyTitle.innerText="💪 Physiotherapy";
+phyDesc.innerText="Recovery sessions at home.";
+contactTitle.innerText="Contact Us";
+footerText.innerText="© 2026 Careloop. All rights reserved.";
 }
 else{
-
-document.getElementById("navHome").innerText="ホーム";
-document.getElementById("navServices").innerText="サービス";
-document.getElementById("navContact").innerText="お問い合わせ";
-
-document.getElementById("homeTitle").innerText="ケアループへようこそ";
-document.getElementById("homeDesc").innerText="ご自宅で受けられる医療と薬局サービス。";
-document.getElementById("servicesTitle").innerText="サービス内容";
-
-document.getElementById("doorTitle").innerText="🚚 訪問診療";
-document.getElementById("doorDesc").innerText="医師と看護師がご自宅へ訪問します。";
-
-document.getElementById("docTitle").innerText="👨‍⚕️ 医師相談";
-document.getElementById("docDesc").innerText="オンラインまたは対面診療。";
-
-document.getElementById("phyTitle").innerText="💪 理学療法";
-document.getElementById("phyDesc").innerText="専門的なリハビリ治療をご自宅で。";
-
-document.getElementById("contactTitle").innerText="お問い合わせ";
-document.getElementById("footerText").innerText="© 2026 ケアループ - 在宅医療サービス。";
+navHome.innerText="ホーム";
+navServices.innerText="サービス";
+navContact.innerText="お問い合わせ";
+homeTitle.innerText="ケアループへようこそ";
+homeDesc.innerText="在宅医療サービス。";
+servicesTitle.innerText="サービス内容";
+doorTitle.innerText="🚚 訪問診療";
+doorDesc.innerText="医師が自宅訪問。";
+docTitle.innerText="👨‍⚕️ 医師相談";
+docDesc.innerText="オンラインまたは対面。";
+phyTitle.innerText="💪 理学療法";
+phyDesc.innerText="自宅リハビリ。";
+contactTitle.innerText="お問い合わせ";
+footerText.innerText="© 2026 ケアループ.";
 }
 }
 
