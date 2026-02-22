@@ -6,7 +6,6 @@
 <title>Careloop - Pharma & Home Checkup</title>
 
 <style>
-/* ---- YOUR ORIGINAL CSS (UNCHANGED) ---- */
 body {
 font-family: 'Arial', sans-serif;
 margin: 0;
@@ -15,6 +14,7 @@ background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 color: #333;
 min-height: 100vh;
 }
+
 header {
 background: rgba(255,255,255,0.95);
 padding: 1rem 2rem;
@@ -23,52 +23,86 @@ position: sticky;
 top: 0;
 z-index: 100;
 }
+
 .logo {
 display: flex;
 align-items: center;
 gap: 1rem;
 }
+
 .logo img {
 height: 80px;
 width: auto;
 border-radius: 10px;
 }
+
 nav {
 display: flex;
 justify-content: space-between;
 align-items: center;
 }
+
 nav ul {
 list-style: none;
 display: flex;
 gap: 2rem;
 align-items: center;
+margin: 0;
+padding: 0;
 }
+
 nav a {
 text-decoration: none;
 color: #667eea;
 font-weight: bold;
 font-size: 1.1rem;
 }
+
 nav a:hover {
 color: #764ba2;
 }
+
+.language-select {
+padding: 6px 10px;
+border-radius: 6px;
+border: 1px solid #ccc;
+background: white;
+font-weight: bold;
+cursor: pointer;
+}
+
 section {
 padding: 4rem 2rem;
 max-width: 1200px;
 margin: 0 auto;
 text-align: center;
 }
+
 h1, h2 {
 color: white;
 text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
+
+.hero-image {
+width: 100%;
+max-width: 800px;
+height: 300px;
+background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300"><rect fill="%23667eea" width="800" height="300" rx="20"/><text x="400" y="150" font-size="28" fill="white" text-anchor="middle" font-weight="bold" dy=".3em">Careloop Healthcare</text></svg>');
+background-size: cover;
+background-position: center;
+border-radius: 20px;
+margin: 2rem auto;
+box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
 .services {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 2rem;
 margin-top: 2rem;
 }
+
 .service-card {
 background: rgba(255,255,255,0.95);
 padding: 2rem;
@@ -77,9 +111,11 @@ box-shadow: 0 5px 20px rgba(0,0,0,0.2);
 transition: all 0.3s;
 cursor: pointer;
 }
+
 .service-card:hover {
 transform: translateY(-10px);
 }
+
 .modal {
 display: none;
 position: fixed;
@@ -90,6 +126,7 @@ height: 100%;
 background: rgba(0,0,0,0.8);
 z-index: 1000;
 }
+
 .modal-content {
 background: white;
 margin: 5% auto;
@@ -98,6 +135,7 @@ border-radius: 15px;
 max-width: 600px;
 position: relative;
 }
+
 .close {
 position: absolute;
 right: 1.5rem;
@@ -105,6 +143,7 @@ top: 1.5rem;
 font-size: 2rem;
 cursor: pointer;
 }
+
 input, select, textarea {
 width: 100%;
 padding: 1rem;
@@ -113,6 +152,7 @@ border: 1px solid #ddd;
 border-radius: 8px;
 box-sizing: border-box;
 }
+
 button {
 background: #667eea;
 color: white;
@@ -122,15 +162,12 @@ border-radius: 8px;
 cursor: pointer;
 width: 100%;
 }
+
 footer {
 background: rgba(0,0,0,0.8);
 color: white;
 padding: 2rem;
 text-align: center;
-}
-.language-select{
-padding:6px;
-border-radius:6px;
 }
 </style>
 </head>
@@ -160,23 +197,24 @@ border-radius:6px;
 <section id="home">
 <h1 id="homeTitle"></h1>
 <p id="homeDesc"></p>
+<div class="hero-image"></div>
 </section>
 
 <section id="services">
 <h2 id="servicesTitle"></h2>
 <div class="services">
 
-<div class="service-card" onclick="openModal('doorstep')">
+<div class="service-card">
 <h3 id="doorTitle"></h3>
 <p id="doorDesc"></p>
 </div>
 
-<div class="service-card" onclick="openModal('doctor')">
+<div class="service-card">
 <h3 id="docTitle"></h3>
 <p id="docDesc"></p>
 </div>
 
-<div class="service-card" onclick="openModal('physio')">
+<div class="service-card">
 <h3 id="phyTitle"></h3>
 <p id="phyDesc"></p>
 </div>
@@ -199,15 +237,6 @@ border-radius:6px;
 
 <script>
 
-/* MODAL FUNCTIONS */
-function openModal(type){
-document.getElementById(type + "Modal").style.display="block";
-}
-function closeModal(type){
-document.getElementById(type + "Modal").style.display="none";
-}
-
-/* LANGUAGE FUNCTION */
 function changeLanguage(lang){
 
 if(lang==="en"){
@@ -218,7 +247,6 @@ document.getElementById("navContact").innerText="Contact";
 
 document.getElementById("homeTitle").innerText="Welcome to Careloop";
 document.getElementById("homeDesc").innerText="Your Pharma & Home Checkup partner for doorstep convenience.";
-
 document.getElementById("servicesTitle").innerText="Our Services";
 
 document.getElementById("doorTitle").innerText="🚚 Doorstep Visit";
@@ -231,7 +259,6 @@ document.getElementById("phyTitle").innerText="💪 Physiotherapy";
 document.getElementById("phyDesc").innerText="Professional recovery sessions at home.";
 
 document.getElementById("contactTitle").innerText="Contact Us";
-
 document.getElementById("footerText").innerText="© 2026 Careloop - Pharma & Home Checkup. All rights reserved.";
 
 }
@@ -243,7 +270,6 @@ document.getElementById("navContact").innerText="お問い合わせ";
 
 document.getElementById("homeTitle").innerText="ケアループへようこそ";
 document.getElementById("homeDesc").innerText="ご自宅で受けられる医療と薬局サービス。";
-
 document.getElementById("servicesTitle").innerText="サービス内容";
 
 document.getElementById("doorTitle").innerText="🚚 訪問診療";
@@ -256,12 +282,10 @@ document.getElementById("phyTitle").innerText="💪 理学療法";
 document.getElementById("phyDesc").innerText="専門的なリハビリ治療をご自宅で。";
 
 document.getElementById("contactTitle").innerText="お問い合わせ";
-
-document.getElementById("footerText").innerText="© 2026 ケアループ - 薬局＆在宅医療サービス。";
+document.getElementById("footerText").innerText="© 2026 ケアループ - 在宅医療サービス。";
 }
 }
 
-/* DEFAULT LOAD JAPANESE */
 window.onload=function(){
 changeLanguage("jp");
 }
